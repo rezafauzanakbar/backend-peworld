@@ -84,6 +84,19 @@ const perekrutModel = {
       );
     });
   },
+  updatePhoto: (id_perekrut, photo) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `UPDATE perekrut SET photo = '${photo}' WHERE id_perekrut = ${id_perekrut}`
+      )
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  },
   selectDetail: (id_perekrut) => {
     return new Promise((resolve, reject) => {
       db.query(
