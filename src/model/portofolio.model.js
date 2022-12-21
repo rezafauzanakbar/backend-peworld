@@ -64,7 +64,7 @@ const portofolioModel = {
   insertPortofolio: (data) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `INSERT INTO portofolio (id_user, title_portofolio, image, link, type) VALUES (${data.id_user}, '${data.title_portofolio}', '${data.image}', '${data.link}', ${data.type});`,
+        `INSERT INTO portofolio (id_user, title_portofolio, image, link, type, image_pub_id, image_url, image_secure_url) VALUES (${data.id_user}, '${data.title_portofolio}', '${data.image}', '${data.link}', ${data.type}, '${data.image_pub_id}', '${data.image_url}', '${data.image_secure_url}');`,
         (err, res) => {
           if (err) {
             reject(err);

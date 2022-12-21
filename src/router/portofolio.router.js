@@ -20,7 +20,8 @@ router
   .get("/portofolio/user/:id", listByUser)
   .get("/portofolio/detail/:id", detail)
   .post("/portofolio/insert", uploadImage, insert)
-  .delete("/portofolio/delete/:id", deleteImage, destroy)
+  // .delete("/portofolio/delete/:id", deleteImage, destroy)
+  .delete("/portofolio/delete/:id", destroy)
   .put("/portofolio/update/:id", deleteImage, uploadImage, updatePortofolio);
 
 module.exports = router; // harus di ekspor agar bisa dipanggil di index

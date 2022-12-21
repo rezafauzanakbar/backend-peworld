@@ -1,5 +1,6 @@
 const portofolioModel = require("../model/portofolio.model");
 const { success, failed } = require("../helper/response");
+const cloudinary = require("../helper/cloudinary");
 
 const userController = {
   list: (req, res) => {
@@ -45,9 +46,14 @@ const userController = {
         failed(res, err.message, "failed", "Failed to get detail portofolio");
       });
   },
-  destroy: (req, res) => {
+  destroy: async (req, res) => {
     const id_portofolio = req.params.id;
-    portofolioModel
+    const data = await portofolioModel.getDetailPortofolio(id_portofolio);
+    const public_id = data.rows[0].image_pub_id;
+    if (public_id !== null) {
+      await cloudinary.uploader.destroy(public_id);
+    }
+    await portofolioModel
       .deletePortofolio(id_portofolio)
       .then((result) => {
         success(res, result.rowCount, "success", "Delete portofolio Success");
@@ -56,16 +62,20 @@ const userController = {
         failed(res, err.message, "failed", "Failed to delete portofolio");
       });
   },
-  insert: (req, res) => {
+  insert: async (req, res) => {
     try {
+      const image = await cloudinary.uploader.upload(req.file.path);
       const { id_user, title_portofolio, link, type } = req.body;
-      const image = req.file.filename;
+      // const image = req.file.filename;
       const data = {
         id_user,
         title_portofolio,
-        image,
+        image: image.original_filename,
         link,
         type,
+        image_pub_id: image.public_id,
+        image_url: image.url,
+        image_secure_url: image.secure_url,
       };
       portofolioModel
         .insertPortofolio(data)
