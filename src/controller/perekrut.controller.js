@@ -117,6 +117,18 @@ module.exports = {
         res.json(error);
       });
   },
+  updatePhoto: (req, res) => {
+    const id_perekrut = req.params.id;
+    const photo = req.file.filename;
+    perekrutModel
+      .updatePhoto(id_perekrut, photo)
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((error) => {
+        res.json(error);
+      });
+  },
   detail: (req, res) => {
     const id_perekrut = req.params.id;
     perekrutModel

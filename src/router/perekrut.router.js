@@ -4,6 +4,7 @@ const {
   login,
   update,
   detail,
+  updatePhoto,
   list,
 } = require("../controller/perekrut.controller");
 
@@ -19,6 +20,7 @@ router
   //login
   .post("/login/perekrut", login)
   .put("/perekrut/update/:id", update)
+  .put("/perekrut/update/photo/:id", deletePhoto, uploadPhoto, updatePhoto)
   .get("/perekrut/detail/:id", detail)
   .get("/perekrut", list);
 
