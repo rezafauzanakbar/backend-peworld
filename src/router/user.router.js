@@ -24,9 +24,7 @@ router
   .put("/user/:id", update)
   .put("/user/photo/:id", uploadPhoto, updatePhoto)
   .delete("/user/:id", deletePhoto, deleteUser)
-  //register
   .post("/register", register)
-  //login
   .post("/login", login);
 
 module.exports = router; // harus di ekspor agar bisa dipanggil di index
