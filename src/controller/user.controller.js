@@ -1,5 +1,6 @@
 const userModel = require("../model/user.model");
 const { success, failed } = require("../helper/response");
+const cloudinary = require("../helper/cloudinary");
 
 const userController = {
   // method
@@ -73,11 +74,22 @@ const userController = {
       res.json(err);
     }
   },
-  updatePhoto: (req, res) => {
+  updatePhoto: async (req, res) => {
     const id_user = req.params.id;
-    const photo = req.file.filename;
+    // const photo = req.file.filename;
+    let photo;
+    if (req.file) {
+      photo = await cloudinary.uploader.upload(req.file.path);
+    }
+    const body = await {
+      id_user: parseInt(id_user),
+      photo: photo.original_filename,
+      photo_pub_id: photo.public_id,
+      photo_url: photo.url,
+      photo_secure_url: photo.secure_url,
+    };
     userModel
-      .updatePhoto(id_user, photo)
+      .updatePhoto(body)
       .then((result) => {
         res.json(result);
       })

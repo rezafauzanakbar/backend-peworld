@@ -22,7 +22,7 @@ router
   .get("/user/all", listWithoutLimit)
   .get("/user/detail/:id", detail)
   .put("/user/:id", update)
-  .put("/user/photo/:id", deletePhoto, uploadPhoto, updatePhoto)
+  .put("/user/photo/:id", uploadPhoto, updatePhoto)
   .delete("/user/:id", deletePhoto, deleteUser)
   //register
   .post("/register", register)
