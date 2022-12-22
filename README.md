@@ -49,6 +49,7 @@ Run program with `npm start`
 RESTful API for this web application, clone this for development HireJobs.\
 
 - [Frontend-HireJobs](https://github.com/rezafauzanakbar/frontend-peworld)
+- [deploy-vercel](https://frontend-peworld.vercel.app/)
 
 ## Contributing
 
