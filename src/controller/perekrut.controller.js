@@ -10,8 +10,15 @@ module.exports = {
   register: (req, res) => {
     try {
       //tangkap data dari body
-      const { name_perekrut, email, perusahaan, jabatan, phone, password } =
-        req.body;
+      const {
+        name_perekrut,
+        email,
+        perusahaan,
+        jabatan,
+        phone,
+        password,
+        level,
+      } = req.body;
       // const gambar = req.file.filename;
       bcyrpt.hash(password, 10, (err, hash) => {
         if (err) {
@@ -26,6 +33,7 @@ module.exports = {
           phone,
           password: hash,
           photo: req.file ? req.file.filename : "default.png",
+          level,
         };
         perekrutModel
           .register(data)

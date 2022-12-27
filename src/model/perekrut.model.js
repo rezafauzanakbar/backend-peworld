@@ -9,10 +9,11 @@ const perekrutModel = {
     phone,
     password,
     photo,
+    level,
   }) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `INSERT INTO perekrut (name_perekrut, email, perusahaan, jabatan, phone, password, photo) VALUES ('${name_perekrut}', '${email}', '${perusahaan}', '${jabatan}', '${phone}', '${password}', '${photo}')`,
+        `INSERT INTO perekrut (name_perekrut, email, perusahaan, jabatan, phone, password, photo, level) VALUES ('${name_perekrut}', '${email}', '${perusahaan}', '${jabatan}', '${phone}', '${password}', '${photo}', ${level})`,
         (err, res) => {
           if (err) {
             reject(err);
