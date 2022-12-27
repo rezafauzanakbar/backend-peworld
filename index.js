@@ -24,6 +24,8 @@ app.use(perekrutRouter);
 app.use(hireRouter);
 
 // jalankan express
-app.listen(process.env.PORT, () => {
-  console.log("SERVECE RUNNING ON PORT 3001");
+const APP_PORT = process.env.PORT || 3005;
+
+server.listen(APP_PORT, () => {
+  console.log("listening on port" + APP_PORT);
 });
